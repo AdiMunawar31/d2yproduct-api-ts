@@ -1,8 +1,10 @@
 import { Express, Request, Response } from "express";
+import { createProductHandler, deleteProductHandler, getProductHandler, updateProductHandler } from "../controllers/product.controller";
 import { createUserSessionHandler, deleteSessionHandler, getUserSessionsHandler } from "../controllers/sessioin.controller";
 import { createUserHandler } from "../controllers/user.controller";
 import requireUser from "../middleware/requireUser";
 import validateResource from "../middleware/validateResource";
+import { createProductSchema, deleteProductSchema, getProductSchema, updateProductSchema } from "../schemas/product.schema";
 import { createSessionSchema } from "../schemas/session.schema";
 import { createUserSchema } from "../schemas/user.schema";
 
@@ -21,29 +23,29 @@ const routes = (app: Express) => {
 
     app.delete("/api/sessions", requireUser, deleteSessionHandler);
 
-    // app.post(
-    //     "/api/products",
-    //     [requireUser, validateResource(createProductSchema)],
-    //     createProductHandler
-    // );
+    app.post(
+        "/api/products",
+        [requireUser, validateResource(createProductSchema)],
+        createProductHandler
+    );
 
-    // app.put(
-    //     "/api/products/:productId",
-    //     [requireUser, validateResource(updateProductSchema)],
-    //     updateProductHandler
-    // );
+    app.put(
+        "/api/products/:productId",
+        [requireUser, validateResource(updateProductSchema)],
+        updateProductHandler
+    );
 
-    // app.get(
-    //     "/api/products/:productId",
-    //     validateResource(getProductSchema),
-    //     getProductHandler
-    // );
+    app.get(
+        "/api/products/:productId",
+        validateResource(getProductSchema),
+        getProductHandler
+    );
 
-    // app.delete(
-    //     "/api/products/:productId",
-    //     [requireUser, validateResource(deleteProductSchema)],
-    //     deleteProductHandler
-    // );
+    app.delete(
+        "/api/products/:productId",
+        [requireUser, validateResource(deleteProductSchema)],
+        deleteProductHandler
+    );
 }
 
 export default routes;

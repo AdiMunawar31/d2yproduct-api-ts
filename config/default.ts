@@ -2,6 +2,10 @@ export default {
     port: 1337,
     dbUri: 'mongodb+srv://ulin:2qbEQDsvQNpkAtJM@cluster0.mnfc0.mongodb.net/d2yshop-api?retryWrites=true&w=majority',
     saltWorkFactor: 10,
+    accessTokenTtl: "15m",
+    refreshTokenTtl: "1y",
+    accessTokenPrivateKey: ``,
+    accessTokenPublicKey: ``,
     publicKey: `-----BEGIN PUBLIC KEY-----
 MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDp1EhMQu29QH02LgC3snnZEeGR
 x5B9RoeujsJsAxVppDD/lUeXV45AG74b4EAFG/OrZrGulHuyRBwJSMQiy+6yCY1o
